@@ -65,8 +65,6 @@ function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
  console.log("Hello"+" "+candidateName);
   askQuestion();
-
-  
   gradeQuiz(this.candidateAnswers);
 }
 
