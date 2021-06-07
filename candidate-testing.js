@@ -5,12 +5,15 @@ const input = require('readline-sync');
 // TODO 1.1a: Define candidateName // 
 let candidateName=" ";
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
-let question="1) Who was the first American woman in space?";
+let question="1) Who was the first American woman in space? ";
 let correctAnswer="Sally Ride";
 let candidateAnswer=" ";
-let questions;
-let correctAnswers;
-let candidateAnswers;
+
+let questions= ["1) Who was the first American woman in space? ", "2) True or false: 5 kilometer == 5000 meters? ", "3) (5 + 3)/2 * 10 = ? ", "4) Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "5) What is the minimum crew size for the ISS? "];
+
+let correctAnswers=["Sally Ride", "true", "40", "Trajectory", "3"];
+
+let candidateAnswers=[];
 
 
 function askForName() {
@@ -22,20 +25,38 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
- candidateAnswer=input.question(question);
- console.log("your answer:"+" "+candidateAnswer)
- console.log("Correct Answer:"+" "+correctAnswer) 
- 
- }
+ for (let i = 0; i < questions.length; i++) {
+    candidateAnswers[i]= input.question(questions[i]);
+   console.log("your answer:"+" "+candidateAnswers[i]);
+   console.log("correct answer:"+" "+correctAnswers[i]);
+  }
+}
+
+
+
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 
 
 
-  let grade;
-  
 
+
+  let grade=0;
+  let numberofcorrectquestions=0;
+  
+  for (let i=0; i<5; i++){
+    if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()){
+      numberofcorrectquestions= numberofcorrectquestions + 1;
+    }
+  }
+  grade=numberofcorrectquestions/5*100;
+  console.log(">>> Overall Grade: "+ grade +"% ("+numberofcorrectquestions + " of 5 responses correct) <<<");
+  let Status=" ";
+
+  if (grade >=80)console.log(">>> Status: PASSED <<<");
+  
+  else(console.log(">>> Status: FAILED <<<"))
   return grade;
 }
 
@@ -44,8 +65,8 @@ function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
  console.log("Hello"+" "+candidateName);
   askQuestion();
- 
 
+  
   gradeQuiz(this.candidateAnswers);
 }
 
