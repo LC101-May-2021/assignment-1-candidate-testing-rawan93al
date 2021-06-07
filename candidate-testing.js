@@ -42,7 +42,7 @@ function gradeQuiz(candidateAnswers) {
 
 
 
-  let grade=0;
+  let grade;
   let numberofcorrectquestions=0;
   
   for (let i=0; i<5; i++){
